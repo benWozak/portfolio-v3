@@ -748,8 +748,8 @@ export interface Footer {
  */
 export interface Brand {
   id: number;
-  logo_light: number | Media;
-  logo_dark: number | Media;
+  logo_light?: (number | null) | Media;
+  logo_dark?: (number | null) | Media;
   socials?: {
     linkedin?: string | null;
     github?: string | null;

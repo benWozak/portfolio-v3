@@ -10,14 +10,14 @@ export const Brand: GlobalConfig = {
       name: 'logo_light',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      // required: true,
       label: 'Brand Logo - light version',
     },
     {
       name: 'logo_dark',
       type: 'upload',
       relationTo: 'media',
-      required: true,
+      // required: true,
       label: 'Brand Logo - dark version',
     },
     {
