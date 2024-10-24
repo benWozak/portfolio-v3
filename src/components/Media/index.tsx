@@ -4,12 +4,17 @@ import type { Props } from './types'
 
 import { ImageMedia } from './ImageMedia'
 import { VideoMedia } from './VideoMedia'
+import { SVGMedia } from './SVGMedia'
 
 export const Media: React.FC<Props> = (props) => {
   const { className, htmlElement = 'div', resource } = props
 
   const isVideo = typeof resource === 'object' && resource?.mimeType?.includes('video')
+  const isSVG = typeof resource === 'object' && resource?.mimeType?.includes('svg')
   const Tag = (htmlElement as any) || Fragment
+
+  console.log(isSVG)
+  console.log(resource)
 
   return (
     <Tag
@@ -19,7 +24,13 @@ export const Media: React.FC<Props> = (props) => {
           }
         : {})}
     >
-      {isVideo ? <VideoMedia {...props} /> : <ImageMedia {...props} />}
+      {isVideo ? (
+        <VideoMedia {...props} />
+      ) : isSVG ? (
+        <SVGMedia {...props} />
+      ) : (
+        <ImageMedia {...props} />
+      )}
     </Tag>
   )
 }

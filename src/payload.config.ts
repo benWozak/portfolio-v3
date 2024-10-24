@@ -14,6 +14,8 @@ import {
   ItalicFeature,
   LinkFeature,
   lexicalEditor,
+  UnorderedListFeature,
+  UploadFeature,
 } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp' // editor-import
 import { UnderlineFeature } from '@payloadcms/richtext-lexical'
@@ -29,6 +31,7 @@ import Users from './collections/Users'
 import { seedHandler } from './endpoints/seedHandler'
 import { Footer } from './Footer/config'
 import { Header } from './Header/config'
+import { Brand } from './Brand/config'
 import { revalidateRedirects } from './hooks/revalidateRedirects'
 import { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { Page, Post } from 'src/payload-types'
@@ -93,6 +96,7 @@ export default buildConfig({
         UnderlineFeature(),
         BoldFeature(),
         ItalicFeature(),
+        UnorderedListFeature(),
         LinkFeature({
           enabledCollections: ['pages', 'posts'],
           fields: ({ defaultFields }) => {
@@ -115,6 +119,36 @@ export default buildConfig({
             ]
           },
         }),
+        UploadFeature({
+          collections: {
+            media: {
+              fields: [
+                {
+                  name: 'caption',
+                  type: 'text',
+                },
+                {
+                  name: 'alignment',
+                  type: 'radio',
+                  options: [
+                    {
+                      label: 'Left',
+                      value: 'left',
+                    },
+                    {
+                      label: 'Center',
+                      value: 'center',
+                    },
+                    {
+                      label: 'Right',
+                      value: 'right',
+                    },
+                  ],
+                },
+              ],
+            },
+          },
+        }),
       ]
     },
   }),
@@ -135,7 +169,7 @@ export default buildConfig({
       path: '/seed',
     },
   ],
-  globals: [Header, Footer],
+  globals: [Header, Footer, Brand],
   plugins: [
     redirectsPlugin({
       collections: ['pages', 'posts'],

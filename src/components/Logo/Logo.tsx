@@ -1,12 +1,27 @@
+'use client'
+
 import React from 'react'
+import { useTheme } from '@/providers/Theme'
+import { Theme } from '@/providers/Theme/types'
 
 export const Logo = () => {
-  return (
-    /* eslint-disable @next/next/no-img-element */
-    <img
-      alt="Payload Logo"
-      className="max-w-[9.375rem] invert dark:invert-0"
-      src="https://raw.githubusercontent.com/payloadcms/payload/main/packages/payload/src/admin/assets/images/payload-logo-light.svg"
-    />
-  )
+  const { theme } = useTheme()
+
+  const [value, setValue] = React.useState<Theme | null | undefined>()
+
+  React.useEffect(() => {
+    setValue(theme)
+  }, [theme])
+
+  if (value === 'dark') {
+    return (
+      /* eslint-disable @next/next/no-img-element */
+      <img alt="BW Logo" height="90" width="90" src="/media/BW_logo_light.svg" />
+    )
+  } else {
+    return (
+      /* eslint-disable @next/next/no-img-element */
+      <img alt="BW Logo" height="90" width="90" src="/media/BW_logo.svg" />
+    )
+  }
 }
