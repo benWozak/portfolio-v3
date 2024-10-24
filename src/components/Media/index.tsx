@@ -13,9 +13,6 @@ export const Media: React.FC<Props> = (props) => {
   const isSVG = typeof resource === 'object' && resource?.mimeType?.includes('svg')
   const Tag = (htmlElement as any) || Fragment
 
-  console.log(isSVG)
-  console.log(resource)
-
   return (
     <Tag
       {...(htmlElement !== null
