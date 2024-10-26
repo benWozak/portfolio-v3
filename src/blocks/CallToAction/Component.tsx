@@ -13,17 +13,17 @@ export const CallToActionBlock: React.FC<
   }
 > = ({ links, richText }) => {
   return (
-    <div className="container">
-      <div className="bg-card rounded border-border border p-4 flex flex-col gap-8 md:flex-row md:justify-between md:items-center">
-        <div className="max-w-[48rem] flex items-center">
+    <section className="bg-secondary text-secondary-foreground">
+      <div className="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-[60vh] lg:items-center">
+        <div className="mx-auto max-w-3xl text-center">
           {richText && <RichText className="mb-0" content={richText} enableGutter={false} />}
-        </div>
-        <div className="flex flex-col gap-8">
-          {(links || []).map(({ link }, i) => {
-            return <CMSLink key={i} size="lg" {...link} />
-          })}
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            {(links || []).map(({ link }, i) => {
+              return <CMSLink key={i} size="lg" {...link} />
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }
