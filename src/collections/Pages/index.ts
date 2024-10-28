@@ -4,6 +4,7 @@ import { authenticated } from '../../access/authenticated'
 import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { TimelineBlock } from '@/blocks/Timeline/config'
+import { FeaturesBlock } from '@/blocks/FeaturesBlock/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
 import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
@@ -70,7 +71,7 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, TimelineBlock],
+              blocks: [CallToAction, Content, MediaBlock, Archive, FormBlock, TimelineBlock, FeaturesBlock],
               required: true,
             },
           ],
