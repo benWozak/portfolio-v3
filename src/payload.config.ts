@@ -1,4 +1,4 @@
-// storage-adapter-import-placeholder
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 
 import { payloadCloudPlugin } from '@payloadcms/plugin-cloud'
@@ -171,6 +171,15 @@ export default buildConfig({
   ],
   globals: [Header, Footer, Brand],
   plugins: [
+    vercelBlobStorage({
+      enabled: true, // Optional, defaults to true
+      // Specify which collections should use Vercel Blob
+      collections: {
+        [Media.slug]: true,
+      },
+      // Token provided by Vercel once Blob storage is added to your Vercel project
+      token: process.env.BLOB_READ_WRITE_TOKEN || '',
+    }),
     redirectsPlugin({
       collections: ['pages', 'posts'],
       overrides: {

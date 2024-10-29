@@ -9,9 +9,9 @@ import { CMSLink } from '@/components/Link'
 
 export async function Footer() {
   const footer = (await getCachedGlobal('footer')()) as Footer
-  const brand = (await getCachedGlobal('brand')()) as Brand
+  const brand = (await getCachedGlobal('brand', 1)()) as Brand
 
-  const { socials } = brand
+  const { socials, logo_light } = brand
   const { linkedin, github, portfolio } = socials || {}
   const navItems = footer?.navItems || []
 
@@ -20,7 +20,13 @@ export async function Footer() {
       <div className="container py-8 gap-8 flex flex-col md:flex-row md:justify-between">
         <Link className="flex items-center" href="/">
           <picture>
-            <img alt="BW Logo" height="90" width="90" src="/media/BW_logo_light.svg" />
+            <img
+              alt="BW Logo"
+              height="90"
+              width="90"
+              // @ts-ignore
+              src={`${process.env.NEXT_PUBLIC_SERVER_URL}${logo_light?.url}`}
+            />
           </picture>
         </Link>
 

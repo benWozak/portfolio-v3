@@ -1,27 +1,18 @@
-'use client'
+import { Media } from '@/payload-types'
 
-import React from 'react'
-import { useTheme } from '@/providers/Theme'
-import { Theme } from '@/providers/Theme/types'
+type Props = {
+  image: number | Media | null | undefined
+}
 
-export const Logo = () => {
-  const { theme } = useTheme()
-
-  const [value, setValue] = React.useState<Theme | null | undefined>()
-
-  React.useEffect(() => {
-    setValue(theme)
-  }, [theme])
-
-  if (value === 'dark') {
-    return (
-      /* eslint-disable @next/next/no-img-element */
-      <img alt="BW Logo" height="90" width="90" src="/media/BW_logo_light.svg" />
-    )
-  } else {
-    return (
-      /* eslint-disable @next/next/no-img-element */
-      <img alt="BW Logo" height="90" width="90" src="/media/BW_logo.svg" />
-    )
-  }
+export const Logo = ({ image }: Props) => {
+  return (
+    /* eslint-disable @next/next/no-img-element */
+    <img
+      alt="BW Logo"
+      height="90"
+      width="90"
+      // @ts-ignore
+      src={`${process.env.NEXT_PUBLIC_SERVER_URL}${image?.url}`}
+    />
+  )
 }
