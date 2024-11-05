@@ -51,6 +51,24 @@ const timelineFields: Field[] = [
       },
     },
   }),
+  {
+    name: 'icons',
+    type: 'array',
+    label: 'Technologies',
+    minRows: 0,
+    maxRows: 10,
+    admin: {
+      description: 'Add up to 10 icons to display at the bottom of the timeline card',
+    },
+    fields: [
+      {
+        name: 'icon',
+        type: 'upload',
+        relationTo: 'media',
+        required: true,
+      },
+    ],
+  },
 ]
 
 export const TimelineBlock: Block = {

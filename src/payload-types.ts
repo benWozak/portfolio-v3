@@ -605,6 +605,12 @@ export interface TimelineBlock {
           label: string;
           appearance?: ('default' | 'outline') | null;
         };
+        icons?:
+          | {
+              icon: number | Media;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;

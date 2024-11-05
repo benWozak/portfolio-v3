@@ -5,6 +5,7 @@ import RichText from '@/components/RichText'
 import { CMSLink } from '../../components/Link'
 
 import type { Page } from '@/payload-types'
+import { Media } from '@/components/Media'
 
 type Props = Extract<Page['layout'][0], { blockType: 'timeline' }>
 
@@ -14,6 +15,7 @@ export const Timeline: React.FC<
   }
 > = (props) => {
   const { event } = props
+  const iconSize = { width: 48, height: 48 }
 
   return (
     <section className="container my-16">
@@ -27,9 +29,21 @@ export const Timeline: React.FC<
                 {`${dayjs(item['start-date']).format('MMM, YYYY')}`}
               </time>
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
-              {richText && <RichText content={richText} enableGutter={false} />}
+              <div className="max-w-2xl">
+                {richText && <RichText content={richText} enableGutter={false} />}
+              </div>
 
               {enableLink && <CMSLink {...link} />}
+              <div className="inline-flex flex-row content-center gap-4">
+                {item.icons?.map((el, index) => (
+                  <Media
+                    key={index}
+                    resource={el.icon}
+                    enforceSize={iconSize}
+                    className="object-contain"
+                  />
+                ))}
+              </div>
             </li>
           )
         })}
