@@ -11,6 +11,12 @@ import { link } from '@/fields/link'
 
 const FeatureFields: Field[] = [
   {
+    name: 'topIcon',
+    type: 'upload',
+    relationTo: 'media',
+    label: 'Top Icon',
+  },
+  {
     name: 'richText',
     type: 'richText',
     editor: lexicalEditor({
@@ -36,6 +42,24 @@ const FeatureFields: Field[] = [
       },
     },
   }),
+  {
+    name: 'bottomIcons',
+    type: 'array',
+    label: 'Bottom Icons',
+    minRows: 0,
+    maxRows: 5,
+    admin: {
+      description: 'Add up to 5 icons to display at the bottom of the feature card',
+    },
+    fields: [
+      {
+        name: 'icon',
+        type: 'upload',
+        relationTo: 'media',
+        required: true,
+      },
+    ],
+  },
 ]
 
 export const FeaturesBlock: Block = {

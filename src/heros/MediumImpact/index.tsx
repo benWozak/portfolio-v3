@@ -13,7 +13,7 @@ export const MediumImpactHero: React.FC<Page['hero']> = ({ links, media, richTex
         {richText && (
           <RichText className="mb-6 lg:w-[40rem]" content={richText} enableGutter={false} />
         )}
-        <div className="pt-10 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
+        <div className="pt-2 items-center justify-center space-y-3 sm:space-x-6 sm:space-y-0 sm:flex lg:justify-start">
           {Array.isArray(links) && links.length > 0 && (
             <ul className="flex gap-4">
               {links.map(({ link }, i) => {

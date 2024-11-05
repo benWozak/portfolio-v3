@@ -647,6 +647,7 @@ export interface FeaturesBlock {
   };
   features?:
     | {
+        topIcon?: (number | null) | Media;
         richText?: {
           root: {
             type: string;
@@ -674,6 +675,12 @@ export interface FeaturesBlock {
           label: string;
           appearance?: ('default' | 'outline') | null;
         };
+        bottomIcons?:
+          | {
+              icon: number | Media;
+              id?: string | null;
+            }[]
+          | null;
         id?: string | null;
       }[]
     | null;

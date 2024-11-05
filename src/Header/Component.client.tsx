@@ -36,7 +36,7 @@ export const HeaderClient: React.FC<HeaderClientProps> = ({ header, brand }) => 
   return (
     <header
       className="container relative z-20 py-4 flex justify-between"
-      {...(theme ? { 'data-theme': theme } : {})}
+      {...(newTheme ? { 'data-theme': newTheme } : {})}
     >
       <Link href="/">
         <Logo image={theme === 'dark' ? brand.logo_light : brand.logo_dark} />

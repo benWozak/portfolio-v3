@@ -22,6 +22,30 @@ export const Media: CollectionConfig = {
     read: anyone,
     update: authenticated,
   },
+  hooks: {
+    beforeChange: [
+      async ({ req, data }) => {
+        // Handle SVG files
+        if (data.mimeType?.includes('svg')) {
+          // If we have access to the file data
+          if (req?.file && typeof req.file !== 'string') {
+            const fileData = req.file.data.toString()
+            // Modify SVG attributes
+            const modifiedData = fileData.replace(
+              /(width|height)="([^"]*)"/g,
+              (match, attr) => `${attr}="100%"`
+            )
+            req.file.data = Buffer.from(modifiedData)
+
+            // Set dimensions to null in the database
+            data.width = null
+            data.height = null
+          }
+        }
+        return data
+      },
+    ],
+  },
   fields: [
     {
       name: 'alt',
@@ -39,7 +63,6 @@ export const Media: CollectionConfig = {
     },
   ],
   upload: {
-    // Upload to the public/media directory in Next.js making them publicly accessible even outside of Payload
     staticDir: path.resolve(dirname, '../../public/media'),
     imageSizes: [
       {
@@ -63,10 +86,6 @@ export const Media: CollectionConfig = {
       {
         name: 'tablet',
         width: 1024,
-        // By specifying `undefined` or leaving a height undefined,
-        // the image will be sized to a certain width,
-        // but it will retain its original aspect ratio
-        // and calculate a height automatically.
         height: undefined,
         position: 'centre',
         generateImageName: ({ height, sizeName, extension, width, originalName }) => {

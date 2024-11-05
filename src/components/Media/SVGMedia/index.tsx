@@ -4,7 +4,14 @@ import React, { useEffect, useState } from 'react'
 import { cn } from 'src/utilities/cn'
 
 export const SVGMedia: React.FC<MediaProps> = (props) => {
-  const { resource, alt: altFromProps, imgClassName, onClick, onLoad: onLoadFromProps } = props
+  const {
+    enforceSize,
+    resource,
+    alt: altFromProps,
+    imgClassName,
+    onClick,
+    onLoad: onLoadFromProps,
+  } = props
 
   const [svgContent, setSvgContent] = useState<string | null>(null)
   const [loading, setLoading] = useState(true)
@@ -34,7 +41,8 @@ export const SVGMedia: React.FC<MediaProps> = (props) => {
     return null
   }
 
-  const { width, height } = resource
+  const width = enforceSize?.width ?? resource.width
+  const height = enforceSize?.height ?? resource.height
 
   return (
     <div

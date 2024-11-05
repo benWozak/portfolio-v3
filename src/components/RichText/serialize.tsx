@@ -29,9 +29,10 @@ export type NodeTypes =
 
 type Props = {
   nodes: NodeTypes[]
+  headingCenter?: boolean
 }
 
-export function serializeLexical({ nodes }: Props): JSX.Element {
+export function serializeLexical({ nodes, headingCenter }: Props): JSX.Element {
   return (
     <Fragment>
       {nodes?.map((node, index): JSX.Element | null => {
@@ -142,7 +143,7 @@ export function serializeLexical({ nodes }: Props): JSX.Element {
             case 'heading': {
               const Tag = node?.tag
               return (
-                <Tag className="col-start-2" key={index}>
+                <Tag className={`col-start-2 ${headingCenter ? 'text-center' : ''}`} key={index}>
                   {serializedChildren}
                 </Tag>
               )
