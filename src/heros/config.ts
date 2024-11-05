@@ -39,6 +39,15 @@ export const hero: Field = {
       required: true,
     },
     {
+      name: 'centerAlign',
+      type: 'checkbox',
+      label: 'Center Align',
+      defaultValue: true,
+      admin: {
+        condition: (_, { type } = {}) => ['lowImpact'].includes(type),
+      },
+    },
+    {
       name: 'richText',
       type: 'richText',
       editor: lexicalEditor({

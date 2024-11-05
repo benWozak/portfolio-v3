@@ -15,6 +15,8 @@ const heroes = {
 export const RenderHero: React.FC<Page['hero']> = (props) => {
   const { type } = props || {}
 
+  console.log(props)
+
   if (!type || type === 'none') return null
 
   const HeroToRender = heroes[type]

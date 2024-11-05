@@ -64,6 +64,7 @@ export interface Page {
   title: string;
   hero: {
     type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact';
+    centerAlign?: boolean | null;
     richText?: {
       root: {
         type: string;
