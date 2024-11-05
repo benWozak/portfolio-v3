@@ -14,13 +14,13 @@ export const FeaturesBlock: React.FC<
 > = (props) => {
   const { features, headline } = props
 
-  const topIconSize = { width: 48, height: 48 }
+  const topIconSize = { width: 96, height: 96 }
   const bottomIconSize = { width: 32, height: 32 }
 
   return (
     <section className="container py-14">
       <div className="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
-        <div className="max-w-3xl mx-auto space-y-3">
+        <div className="max-w-3xl mx-auto space-y-3 flex justify-center">
           {headline?.description && (
             <RichText content={headline?.description} enableGutter={false} />
           )}
@@ -35,14 +35,14 @@ export const FeaturesBlock: React.FC<
               return (
                 <li
                   key={index}
-                  className="flex flex-col gap-4 border border-slate-200 p-4 rounded-xl"
+                  className="flex flex-col gap-4 border border-slate-200 p-8 rounded-xl"
                 >
                   {topIcon && (
                     <div className="flex justify-center">
                       <Media
                         resource={topIcon}
                         enforceSize={topIconSize}
-                        className="w-12 h-12 object-contain"
+                        className="object-contain"
                       />
                     </div>
                   )}

@@ -39,7 +39,11 @@ export const RenderBlocks: React.FC<{
 
             if (Block) {
               return (
-                <div id={blockName ? blockName : ''} className="my-16" key={index}>
+                <div
+                  id={blockName ? blockName : ''}
+                  className={`${blocks?.length === index + 1 ? 'mt-16' : 'my-16'}`}
+                  key={index}
+                >
                   {/* @ts-expect-error */}
                   <Block {...block} />
                 </div>

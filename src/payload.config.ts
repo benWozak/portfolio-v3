@@ -16,6 +16,7 @@ import {
   lexicalEditor,
   UnorderedListFeature,
   UploadFeature,
+  AlignFeature,
 } from '@payloadcms/richtext-lexical'
 import sharp from 'sharp' // editor-import
 import { UnderlineFeature } from '@payloadcms/richtext-lexical'
@@ -97,6 +98,7 @@ export default buildConfig({
         BoldFeature(),
         ItalicFeature(),
         UnorderedListFeature(),
+        AlignFeature(),
         LinkFeature({
           enabledCollections: ['pages', 'posts'],
           fields: ({ defaultFields }) => {

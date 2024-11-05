@@ -37,9 +37,13 @@ export const ContentBlock: React.FC<
                 })}
                 key={index}
               >
-                {richText && <RichText content={richText} enableGutter={false} />}
+                {richText && <RichText content={richText} enableGutter={true} />}
 
-                {enableLink && <CMSLink {...link} />}
+                <div
+                  className={`pt-8 ${richText?.root.children[0].format === 'center' ? 'flex justify-center' : ''}`}
+                >
+                  {enableLink && <CMSLink {...link} />}
+                </div>
               </div>
             )
           })}

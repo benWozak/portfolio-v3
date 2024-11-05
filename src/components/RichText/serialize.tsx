@@ -15,6 +15,7 @@ import {
   IS_SUBSCRIPT,
   IS_SUPERSCRIPT,
   IS_UNDERLINE,
+  IS_ALIGN_CENTER,
 } from './nodeFormat'
 import type { Page } from '@/payload-types'
 
@@ -131,11 +132,16 @@ export function serializeLexical({ nodes, headingCenter }: Props): JSX.Element {
         } else {
           switch (node.type) {
             case 'linebreak': {
-              return <br className="col-start-2" key={index} />
+              return (
+                <br
+                  className={`col-start-2 ${IS_ALIGN_CENTER ? 'flex justify-center' : ''}`}
+                  key={index}
+                />
+              )
             }
             case 'paragraph': {
               return (
-                <p className="col-start-2" key={index}>
+                <p className={`col-start-2 `} key={index}>
                   {serializedChildren}
                 </p>
               )
@@ -151,7 +157,7 @@ export function serializeLexical({ nodes, headingCenter }: Props): JSX.Element {
             case 'list': {
               const Tag = node?.tag
               return (
-                <Tag className="list col-start-2" key={index}>
+                <Tag className={`list col-start-2`} key={index}>
                   {serializedChildren}
                 </Tag>
               )
@@ -181,7 +187,10 @@ export function serializeLexical({ nodes, headingCenter }: Props): JSX.Element {
             }
             case 'quote': {
               return (
-                <blockquote className="col-start-2" key={index}>
+                <blockquote
+                  className={`col-start-2 ${IS_ALIGN_CENTER ? 'flex justify-center' : ''}`}
+                  key={index}
+                >
                   {serializedChildren}
                 </blockquote>
               )
@@ -190,15 +199,17 @@ export function serializeLexical({ nodes, headingCenter }: Props): JSX.Element {
               const fields = node.fields
 
               return (
-                <CMSLink
-                  key={index}
-                  newTab={Boolean(fields?.newTab)}
-                  reference={fields.doc as any}
-                  type={fields.linkType === 'internal' ? 'reference' : 'custom'}
-                  url={fields.url}
-                >
-                  {serializedChildren}
-                </CMSLink>
+                <div className={`${IS_ALIGN_CENTER ? 'flex justify-center text-center' : ''}`}>
+                  <CMSLink
+                    key={index}
+                    newTab={Boolean(fields?.newTab)}
+                    reference={fields.doc as any}
+                    type={fields.linkType === 'internal' ? 'reference' : 'custom'}
+                    url={fields.url}
+                  >
+                    {serializedChildren}
+                  </CMSLink>
+                </div>
               )
             }
 
