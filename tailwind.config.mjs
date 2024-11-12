@@ -46,6 +46,7 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'scale-up': 'scale-up 0.3s ease-in-out'
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -103,6 +104,11 @@ export default {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        'scale-up': {
+          '0%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(0.95)' },
+          '100%': { transform: 'scale(1)' }
+        }
       },
       typography: ({ theme }) => ({
         DEFAULT: {
