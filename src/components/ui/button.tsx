@@ -44,13 +44,24 @@ const buttonVariants = cva(
 
           // Hover state for anchor
           'hover:[&>a]:text-primary-foreground',
-          'hover:[&>a]:animate-[scaleUp_0.3s_ease-in-out]',
+          'hover:[&>a]:animate-[scale-up_0.3s_ease-in-out]',
         ],
-        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        ghost: 'hover:bg-card hover:text-accent-foreground',
-        link: 'text-primary items-start justify-start underline-offset-4 hover:underline',
+        link: [
+          'border-none bg-transparent cursor-pointer group',
+          '[&>a]:relative [&>a]:pb-2 [&>a]:tracking-wider [&>a]:text-sm [&>a]:uppercase',
+          // Underline animation
+          '[&>a]:after:content-[""] [&>a]:after:absolute [&>a]:after:w-full',
+          '[&>a]:after:scale-x-0 [&>a]:after:h-0.5 [&>a]:after:bottom-0 [&>a]:after:left-0',
+          '[&>a]:after:bg-black',
+          '[&>a]:after:origin-right',
+          '[&>a]:after:transition-transform [&>a]:after:duration-300 [&>a]:after:ease-out',
+          // Hover state
+          'hover:[&>a]:after:scale-x-100 hover:[&>a]:after:origin-left',
+        ],
         outline: 'border border-border bg-background hover:bg-card hover:text-accent-foreground',
         secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+        destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
+        ghost: 'hover:bg-card hover:text-accent-foreground',
       },
     },
   },
